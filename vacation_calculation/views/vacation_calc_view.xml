@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_vacation_calc_form">
+            <field name="name">Vacation Calculation from</field>
+            <field name="model">calculate.vacation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <!--button draft -->
+                        <button name="action_draft" states="cancel" string="Set to Draft" type="object"/>
+                        <!--button cancel -->
+                        <button name="button_cancel" states="draft,confirm,hr_officer" string="Cancel" type="object"/>
+                        <!--button hr_officer -->
+                        <button name="action_hr_officer" string="Hr Officer" type="object" states="draft"
+                                class="oe_highlight"/>
+                        <!--button hr manager -->
+                        <button name="action_hr_manager" string="Hr Manager" type="object" states="hr_officer"
+                                class="oe_highlight"/>
+
+                        <button name="action_finance_officer" string="Finance Officer" type="object"
+                                states="hr_manager" class="oe_highlight"/>
+                        <button name="action_finance_manager" string="Finance Manager" type="object"
+                                class="oe_highlight" states="finance_officer"/>
+                        <button name="action_co_approve" string="Co Approve" type="object" class="oe_highlight"
+                                states="finance_manager"/>
+                        <button name="action_validate1" string="Second Approval" type="object" class="oe_highlight"
+                                states="co_approve"/>
+                        <button name="action_validate" string="Approved" type="object" class="oe_highlight"
+                                states="validate1"/>
+
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,hr_officer,hr_manager,finance_officer,finance_manager,co_approve,validate1,validate"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h4>
+                                <group>
+                                    <field name="employee_id"/>
+                                </group>
+                            </h4>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id" readonly="1"/>
+                                <field name="dept_id"/>
+                                <field name="amount" attrs="{'required': [('state','=','hr_officer')]}"/>
+                                <field name="price"/>
+                                <!--                                <field name="account_id"-->
+                                <!--                                       attrs="{'required': ['|',('state','=','finance_officer'),('state','=','finance_manager')]}"/>-->
+                            </group>
+                            <group>
+                                <field name="sell_days"/>
+                                <field name="holiday_status_id"/>
+                                <field name="leave_type_id"/>
+                                <field name="remaining_leaves"/>
+                                <field name="rest"/>
+                                <field name="day_date" readonly="1"/>
+                            </group>
+                        </group>
+                        <group name="account_id"
+                               attrs="{'invisible': [('state','!=','finance_officer')]}"
+                               string="Accounting Settings">
+                            <field name="journal_name"
+                                   attrs="{'required': [('state','in',['finance_officer', 'finance_manager'])]}"/>
+                            <field name="credit_id"
+                                   attrs="{'required': [('state','in',['finance_officer', 'finance_manager'])]}"/>
+                            <field name="debit_id"
+                                   attrs="{'required': [('state','in',['finance_officer', 'finance_manager'])]}"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_vacation_calc_tree">
+            <field name="name">Vacation Calc List</field>
+            <field name="model">calculate.vacation</field>
+            <field name="arch" type="xml">
+                <tree string="Vacation Calculation">
+                    <field name="employee_id"/>
+                    <field name="sell_days"/>
+                    <field name="account_id"/>
+                    <!--                    <field name="day_price"/>-->
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="vacation_action">
+            <field name="name">Vacation Calc</field>
+            <field name="res_model">calculate.vacation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--    START MENU ITEM  -->
+        <menuitem id="vacation_calc_menu" name="Vacation Sale Calc" parent="hr_holidays.menu_hr_holidays_approvals"
+                  action="vacation_action" sequence="4"/>
+    </data>
+</odoo>

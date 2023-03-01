@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <!--add fields to hr.view_employee_form -->
+        <record id="add_day_price_to_employee" model="ir.ui.view">
+            <field name="name">emp.form.inherited</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+<!--                    <field name="day_price"/>-->
+<!--                    <field name="head_manager"/>-->
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

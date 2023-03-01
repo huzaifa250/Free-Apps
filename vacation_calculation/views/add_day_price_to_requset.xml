@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record id="add_day_price_to_employee" model="ir.ui.view">
+            <field name="name">leve.request.form.inherited</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="hr_officer,hr_manager,finance_officer,finance_manager,co_approve,co_approve,validate1,validate"/>
+                </xpath>
+<!--                <xpath expr="//field[@name='user_id']" position="before">-->
+<!--                    <field name="day_price"/>-->
+<!--                </xpath>-->
+            </field>
+        </record>
+    </data>
+</odoo>
