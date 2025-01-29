@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="purchase_tracker_rep_temp">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Purchase Tracker Report</h2>
+                    <br/>
+                </div>
+
+                <t t-foreach="docs" t-as="o">
+                    <table width="100%" border="1" cellpadding="10" cellspacing="10" style="border: 2px  black;">
+                        <tr style="border: 1px solid black !important;">
+                            <td width="50%" style="border: 1px solid black !important;">Customer</td>
+                            <td width="50%" style="border: 1px solid black !important;">
+                                <t t-esc="o.customer_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%" style="border: 1px solid black !important;">Product</td>
+                            <td width="50%" style="border: 1px solid black !important;">
+                                <t t-esc="o.product_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%" style="border: 1px solid black !important;">Purchase Count (This Month)</td>
+                            <td width="50%" style="border: 1px solid black !important;">
+                                <t t-esc="o.purchase_count"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%" style="border: 1px solid black !important;">Discount(%)</td>
+                            <td width="50%" style="border: 1px solid black !important;">
+                                <t t-esc="o.discount_percentage"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%" style="border: 1px solid black !important;">Date Checked</td>
+                            <td width="50%" style="border: 1px solid black !important;">
+                                <t t-esc="o.date_checked"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%" style="border: 1px solid black !important;">Prize Description</td>
+                            <td width="50%" style="border: 1px solid black !important;">
+                                <t t-esc="o.prize_description"/>
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

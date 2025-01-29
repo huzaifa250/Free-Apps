@@ -17,14 +17,15 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'sale', 'purchase'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/customer_purchase_tracker_view.xml',
-        # 'views/templates.xml',
+        'report/purchase_tarcker_report_template.xml',
+        'report/purchase_tracker_report_action.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
