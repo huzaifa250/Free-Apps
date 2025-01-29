@@ -21,20 +21,31 @@
             <field name="model">custom.purchase.tracker</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>
+                    <header>
+                        <button name="%(test_dev.action_report_purchase_tracker_temp)d"
+                                string="Print Report"
+                                type="action"
+                                class="oe_highlight"/>
+                    </header>
+                    <sheet>
                         <group>
-                            <field name="customer_id"/>
-                            <field name="product_id"/>
-                            <field name="purchase_count"/>
-                            <field name="is_eligible" widget="boolean"/>
+                            <group>
+                                <field name="customer_id"/>
+                                <field name="product_id"/>
+                                <field name="purchase_count"/>
+                                <field name="is_eligible" widget="boolean"/>
+                            </group>
+                            <group>
+                                <field name="discount_percentage" widget="percentage"/>
+                                <field name="date_checked" widget="date"/>
+                                <field name="prize_description"/>
+                            </group>
                         </group>
-                        <group>
-<!--                            <field name="sale_order_ids" widget="one2many"/>-->
-                            <field name="discount_percentage" widget="percentage"/>
-                            <field name="date_checked" widget="date"/>
-                            <field name="prize_description"/>
-                        </group>
-                    </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>

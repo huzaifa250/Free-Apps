@@ -2,15 +2,14 @@
 {
     'name': "test_dev",
 
-    'summary': "Track Customer Purchases/ development with odoo 17",
+    'summary': "Track Customer Purchases / odoo17",
 
     'description': """
-    	Track Customer Orders and Give prize ex discont if he/she bought same product
-	3 times or more in the same month
+    Track customer Purchases 
     """,
 
     'author': "Huzaifa Elnaeem",
-    'website': "huz.dark1@gmail.com",
+    'website': "huz.learnchannel@gmail.com",
 
     # Categories can be used to filter modules in modules listing
     # for the full list
@@ -18,7 +17,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale', 'purchase'],
+    'depends': ['base', 'sale', 'purchase', 'mail'],
 
     # always loaded
     'data': [

@@ -13,7 +13,7 @@ class TestDev(models.Model):
     name = fields.Char()
     birth_date = fields.Date('Birth Date')
     age = fields.Integer(compute='_compute_age', store=True, readonly=True)
-    description = fields.Text(' Write any Description')
+    description = fields.Text('Write any Description')
 
     @api.depends('birth_date')
     def _compute_age(self):
@@ -33,15 +33,14 @@ class TestDev(models.Model):
 class CustomerPurchaseTracker(models.Model):
     _name = 'custom.purchase.tracker'
     _description = 'Customer Purchase Tracker'
+    _inherit = 'mail.thread'
     _rec_name = 'customer_id'
 
     customer_id = fields.Many2one(comodel_name='res.partner', string='Customer', required=True)
     product_id = fields.Many2one(comodel_name='product.product', string="Product", required=True)
-    # sale_order_ids = fields.One2many('sale.order', 'partner_id', string='Sale orders',
-    #                                  help='Sale orders related to this customer')
     purchase_count = fields.Integer(string="Purchase Count (This Month)", compute="_compute_purchase_count")
     is_eligible = fields.Boolean(string="Eligible for Prize/Discount", compute="_compute_eligibility", store=True)
-    discount_percentage = fields.Float(string="Discount(%)", default=0.0,
+    discount_percentage = fields.Float(string="Discount(%)", default=0.0, tracking=True,
                                        help='discount percentage is applied if the customer is eligible for a prize.')
     date_checked = fields.Date(string="Date Checked", default=fields.Date.today)
     prize_description = fields.Html(string='Prize Description')
