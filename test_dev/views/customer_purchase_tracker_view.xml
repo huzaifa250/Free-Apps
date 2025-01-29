@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="customer_purchase_tracker_list">
+            <field name="name">Purchase Tracker list</field>
+            <field name="model">custom.purchase.tracker</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="customer_id"/>
+                    <field name="product_id"/>
+                    <field name="purchase_count" optional="show"/>
+                    <field name="discount_percentage" optional="show"/>
+                    <field name="prize_description" optional="hide"/>
+                    <field name="date_checked" optional="show" widget="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="customer_purchase_tracker_form" model="ir.ui.view">
+            <field name="model">custom.purchase.tracker</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="customer_id"/>
+                            <field name="product_id"/>
+                            <field name="purchase_count"/>
+                            <field name="is_eligible" widget="boolean"/>
+                        </group>
+                        <group>
+<!--                            <field name="sale_order_ids" widget="one2many"/>-->
+                            <field name="discount_percentage" widget="percentage"/>
+                            <field name="date_checked" widget="date"/>
+                            <field name="prize_description"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="customer_tracker_action_window">
+            <field name="name">Customer Tracker Action</field>
+            <field name="res_model">custom.purchase.tracker</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="Customer Tracker" id="customer_tracker_menu_root" parent="test_dev.menu_root" sequence="3"/>
+        <!-- menu categories -->
+        <menuitem name="Check Customer" id="customer_tracker_menu_1" parent="customer_tracker_menu_root"
+                  action="customer_tracker_action_window"/>
+    </data>
+</odoo>

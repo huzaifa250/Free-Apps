@@ -1,0 +1,70 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="test_dev.list">
+      <field name="name">test_dev list</field>
+      <field name="model">test_dev.test_dev</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="age"/>
+          <field name="birth_date"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="test_dev_view_form" model="ir.ui.view">
+            <field name="model">test_dev.test_dev</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="birth_date" widget="date"/>
+                            <field name="age"/>
+                          <field name="description"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="test_dev.action_window">
+      <field name="name">test_dev window</field>
+      <field name="res_model">test_dev.test_dev</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="test_dev.action_server">
+      <field name="name">test_dev server</field>
+      <field name="model_id" ref="model_test_dev_test_dev"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="test_dev" id="test_dev.menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Menu 1" id="test_dev.menu_1" parent="test_dev.menu_root"/>
+<!--    <menuitem name="Menu 2" id="test_dev.menu_2" parent="test_dev.menu_root"/>-->
+
+    <!-- actions -->
+    <menuitem name="List" id="test_dev.menu_1_list" parent="test_dev.menu_1"
+              action="test_dev.action_window"/>
+  </data>
+</odoo>

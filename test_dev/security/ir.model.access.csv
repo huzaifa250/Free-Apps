@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_test_dev_test_dev,test_dev.test_dev,model_test_dev_test_dev,,1,1,1,1
+access_custom_purchase.tracker,custom.purchase.tracker.access,model_custom_purchase_tracker,,1,1,1,1
