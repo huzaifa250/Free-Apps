@@ -2,14 +2,15 @@
 {
     'name': "test_dev",
 
-    'summary': "Test Development with odoo 17",
+    'summary': "Track Customer Purchases/ development with odoo 17",
 
     'description': """
-    Any features or development needed will be done or test here
+    Track Customer Orders and Give prize ex discont if he/she bought same product
+	more 3 times or more in the same month
     """,
 
     'author': "Huzaifa Elnaeem",
-    'website': "huz.learnchannel@gmail.com",
+    'website': "huz.dark1@gmail.com",
 
     # Categories can be used to filter modules in modules listing
     # for the full list
