@@ -5,8 +5,8 @@
     'summary': "Track Customer Purchases/ development with odoo 17",
 
     'description': """
-    Track Customer Orders and Give prize ex discont if he/she bought same product
-	more 3 times or more in the same month
+    	Track Customer Orders and Give prize ex discont if he/she bought same product
+	3 times or more in the same month
     """,
 
     'author': "Huzaifa Elnaeem",
