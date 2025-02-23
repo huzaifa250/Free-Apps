@@ -10,7 +10,8 @@ class TestDev(models.Model):
     _name = 'test_dev.test_dev'
     _description = 'Basic model for test dev'
 
-    name = fields.Char()
+    name = fields.Char(string='Name')
+    active = fields.Boolean(default=True, string='Active')
     birth_date = fields.Date('Birth Date')
     age = fields.Integer(compute='_compute_age', store=True, readonly=True)
     description = fields.Text('Write any Description')

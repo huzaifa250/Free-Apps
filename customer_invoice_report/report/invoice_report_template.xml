@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--action report -->
+    <record id="action_invoice_report" model="ir.actions.report">
+        <field name="name">تقرير الفواتير المخصص</field>
+        <field name="model">invoice.report.wizard</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">customer_invoice_report.invoice_report_template</field>
+        <field name="report_file">customer_invoice_report.invoice_report_template</field>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- report template -->
+    <template id="invoice_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>تقرير الفواتير</h2>
+                    <p>من:
+                        <span t-esc="start_date"/>
+                        إلى:
+                        <span t-esc="end_date"/>
+                    </p>
+                    <p>الزبائن:
+                        <span t-esc="', '.join(partners.mapped('name'))"/>
+                    </p>
+                    <table class="table table-condensed">
+
+                        <thead>
+                            <tr>
+                                <th>رقم الفاتورة</th>
+                                <th>تاريخ الفاتورة</th>
+                                <th>العميل</th>
+                                <th>المبلغ الإجمالي</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="docs" t-as="inv">
+                                <td>
+                                    <span t-field="inv.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="inv.invoice_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="inv.partner_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="inv.amount_total"/>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <!-- Sale Orders Table -->
+                    <h3>Sale Orders</h3>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Sale Order Number</th>
+                                <th>Order Date</th>
+                                <th>Customer</th>
+                                <th>Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="sale_orders" t-as="so">
+                                <td>
+                                    <span t-field="so.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="so.date_order"/>
+                                </td>
+                                <td>
+                                    <span t-field="so.partner_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="so.amount_total"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
