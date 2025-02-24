@@ -47,10 +47,33 @@ class InvoiceReportAb(models.AbstractModel):
             ('state', 'in', ['sale', 'done']),  # Confirmed or completed orders
         ])
 
+        # Combine data(so and invoices) into a single list
+        # combined_data = []
+        # Add invoices to the list
+        # for inv in invoices:
+        #     combined_data.append({
+        #         'type': 'Invoice',
+        #         'number': inv.name,
+        #         'date': inv.invoice_date,
+        #         'customer': inv.partner_id.name,
+        #         'amount': inv.amount_total,
+        #     })
+
+        # Add sale orders to the list
+        # for so in sale_orders:
+        #     combined_data.append({
+        #         'type': 'Sale Order', # indicate invoice or so
+        #         'number': so.name,
+        #         'date': so.date_order,
+        #         'customer': so.partner_id.name,
+        #         'amount': so.amount_total,
+        #     })
+
         return {
             'doc_ids': docids,
             'doc_model': 'account.move',
             'docs': invoices,
+            # 'combined_data': combined_data,
             'sale_orders': sale_orders,
             'start_date': start_date,
             'end_date': end_date,

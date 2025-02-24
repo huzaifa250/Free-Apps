@@ -80,6 +80,29 @@
                             </tr>
                         </tbody>
                     </table>
+                    <!-- Single table for both invoices and sale orders -->
+                    <!--                <table class="table table-condensed">-->
+                    <!--                    <thead>-->
+                    <!--                        <tr>-->
+                    <!--                            <th>Type</th>-->
+                    <!--                            <th>Number</th>-->
+                    <!--                            <th>Date</th>-->
+                    <!--                            <th>Customer</th>-->
+                    <!--                            <th>Total Amount</th>-->
+                    <!--                        </tr>-->
+                    <!--                    </thead>-->
+                    <!--                    <tbody>-->
+                    <!--                        <t t-foreach="combined_data" t-as="doc">-->
+                    <!--                            <tr>-->
+                    <!--                                <td><span t-esc="doc['type']"/></td>-->
+                    <!--                                <td><span t-esc="doc['number']"/></td>-->
+                    <!--                                <td><span t-esc="doc['date']"/></td>-->
+                    <!--                                <td><span t-esc="doc['customer']"/></td>-->
+                    <!--                                <td><span t-esc="doc['amount']"/></td>-->
+                    <!--                            </tr>-->
+                    <!--                        </t>-->
+                    <!--                    </tbody>-->
+                    <!--                </table>-->
                 </div>
             </t>
         </t>
